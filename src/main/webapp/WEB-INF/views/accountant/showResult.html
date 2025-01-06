@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payments</title>
+</head>
+<body>
+
+<br>
+
+<div style="margin-left: 33%;
+              width: 33%;
+              text-align: center;
+              float: left;">
+    <table style="border-collapse: collapse;
+                    width: 100%;
+                    margin-right: auto;
+                    margin-left: auto">
+        <thead>
+        <tr>
+            <th style="border: 1px solid black">date</th>
+            <th style="border: 1px solid black">shares</th>
+            <th style="border: 1px solid black">dividend</th>
+            <th style="border: 1px solid black">payment</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="p: ${payments}">
+            <td style="border: 1px solid black;" th:text="${p.getDateString()}"></td>
+            <td style="border: 1px solid black; text-align: right; padding: 5px;" th:text="${p.getSharesQuantity()}"></td>
+            <td style="border: 1px solid black; text-align: right; padding: 5px;" th:text="${p.getDividend()}"></td>
+            <td style="border: 1px solid black; text-align: right; padding: 5px;" th:text="${p.getTotal()}"></td>
+        </tr>
+        </tbody>
+        <tfoot>
+        <tr>
+            <td style="text-align: left; padding: 5px;">payments total:</td>
+            <td style="text-align: right; padding: 5px; font-weight: bold" th:text="${paymentsTotal}"></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding: 5px">EBIT:</td>
+            <td style="text-align: right; padding: 5px; font-weight: bold" th:text="${profitTotal}"></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding: 5px">weighted average amount:</td>
+            <td style="text-align: right; padding: 5px; font-weight: bold" th:text="${averageAmount}"></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding: 5px">inflation & payments adjusted amount:</td>
+            <td style="text-align: right; padding: 5px; font-weight: bold" th:text="${adjustedAmount}"></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding: 5px">share balance:</td>
+            <td style="text-align: right; padding: 5px; font-weight: bold" th:text="${shareBalance}"></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding: 5px">first deal date:</td>
+            <td style="text-align: right; padding: 5px; font-weight: bold" th:text="${firstDealDate}"></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding: 5px">last deal date:</td>
+            <td style="text-align: right; padding: 5px; font-weight: bold" th:text="${lastDealDate}"></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding: 5px">assessed real APY(%):</td>
+            <td style="text-align: right; padding: 5px; font-weight: bold" th:text="${annualPercentageYield}"></td>
+        </tr>
+        <tr>
+            <td style="text-align: left; padding: 5px">real average share price:</td>
+            <td style="text-align: right; padding: 5px; font-weight: bold" th:text="${averageSharePrice}"></td>
+        </tr>
+        </tfoot>
+    </table>
+</div>
+
+    <form th:method="POST" th:action="@{/accountant/back}">
+        <div style="float: left;
+                position: fixed;
+                left: 26%;
+                top: 5%">
+            <input type="submit" value="<">
+        </div>
+    </form>
+
+</body>
+</html>

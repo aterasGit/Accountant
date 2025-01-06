@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>import XML</title>
+</head>
+<body>
+<form method="POST" action="accountant/importXLS" enctype="multipart/form-data">
+  <div style="text-align: center">
+    <br>
+    <input type="text" name="ticker" placeholder="stock ticker" style="text-align: center; "/>
+    <input type="text" name="tax" placeholder="tax" style="text-align: center; max-width: 30px"/>
+    <input type="text" name="price" placeholder="price" style="text-align: center; max-width: 60px"/>
+    <input type="text" name="extraInflation" placeholder="extra inflation" style="text-align: center; max-width: 80px"/>
+    <input type="date" name="splitDate"/>
+    <input type="text" name="splitRatio" placeholder="split ratio" style="text-align: center; max-width: 60px"/>
+    <input type="text" name="lotAfterSplit" placeholder="lot after" style="text-align: center; max-width: 50px"/>
+    <input type="file" name="file" accept="application/vnd.ms-excel"/>
+    <input type="submit" value="parse"/>
+  </div>
+</form>
+</body>
+</html>
