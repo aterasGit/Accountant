@@ -236,7 +236,7 @@ public class  Accountant {
 
     private Map<Integer, List<Double>> getInflationMeasures(Double extraInflation) {
 
-        Map<Integer, List<Double>> inflationData = new LinkedHashMap<>();
+        Map<Integer, List<Double>> inflationData = new TreeMap<>((year1, year2) -> year2 - year1);
         StringBuilder content = new StringBuilder();
 
         try {
@@ -266,8 +266,15 @@ public class  Accountant {
             if (year == 2000)
                 break;
         }
-        if (extraInflation != null)
-            inflationData.get(inflationData.keySet().stream().findFirst().get()).add(extraInflation);
+
+        if (extraInflation != null) {
+            int lastYear = inflationData.keySet().stream().findFirst().get();
+            if (inflationData.get(lastYear).size() < 12)
+                inflationData.get(lastYear).add(extraInflation);
+            else
+                inflationData.put(++lastYear, new ArrayList<>(Collections.singleton(extraInflation)));
+        }
+
         return inflationData;
     }
 
